@@ -9,7 +9,7 @@ namespace WanderCampRepository.DataAccessLayer.Interface
 {
     public interface ICampgroundRepository
     {
-        Task<Campground> GetAllCampgroundsAsync();
+        Task<List<Campground>> GetAllCampgroundsAsync();
         Task<Campground> GetCampgroundByIdAsync(int campgroundId);
         Task AddCampgroundAsync(Campground campground);
     }

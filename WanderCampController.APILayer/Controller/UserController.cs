@@ -19,7 +19,7 @@ namespace WanderCampController.APILayer.Controller
         }
 
         [HttpPost("register")]
-        public async Task<UserRegistrationRequest> RegisterAsync(User request)
+        public async Task<UserRegistrationRequest> RegisterAsync([FromBody] User request)
         {
 
             if (!ModelState.IsValid)
@@ -34,7 +34,7 @@ namespace WanderCampController.APILayer.Controller
         }
 
         [HttpPost("login")]
-        public async Task<UserLoginRequest> LoginAsync(User request)
+        public async Task<UserLoginRequest> LoginAsync([FromBody] User request)
         {
             var user = await _userService.AuthenticateAsync(request);
             if (user != null)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,19 +18,34 @@ namespace WanderCampRepository.DataAccessLayer.Repository
         {
             _context = context;
         }
-        public Task AddCampgroundAsync(Campground campground)
+        public async Task AddCampgroundAsync(Campground campground)
         {
-            throw new NotImplementedException();
+             _context.Campgrounds.Add(campground);
+
+            await  _context.SaveChangesAsync();
         }
 
-        public Task<Campground> GetAllCampgroundsAsync()
+        public async Task<List<Campground>> GetAllCampgroundsAsync()
         {
-            throw new NotImplementedException();
+            var campgrounds =  await _context.Campgrounds.ToListAsync();
+
+            if (campgrounds == null)
+            {
+                return new List<Campground> { };
+            }
+            return campgrounds;
         }
 
-        public Task<Campground> GetCampgroundByIdAsync(int campgroundId)
+        public async Task<Campground> GetCampgroundByIdAsync(int campgroundId)
         {
-            throw new NotImplementedException();
+            var campground =  await _context.Campgrounds.FindAsync(campgroundId);
+
+            if (campground == null)
+            {
+                return new Campground();
+            }
+
+            return campground;
         }
     }
 }

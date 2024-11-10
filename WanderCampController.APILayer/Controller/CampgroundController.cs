@@ -26,15 +26,11 @@ namespace WanderCampController.APILayer.Controller
         // Accessible without authentication, if you want to make campgrounds visible to everyone
         [HttpGet]
         [AllowAnonymous]
-        public async Task<CampgroundRequest> GetAllCampgroundsAsync()
+        public async Task<List<CampgroundRequest>> GetAllCampgroundsAsync()
         {
             var campgrounds = await _campgroundService.GetAllCampgroundsAsync();
 
-            if (campgrounds == null)
-            {
-                return new CampgroundRequest { ErrorMessage = "Campgrounds Not Found" };
-            }
-            return new CampgroundRequest(campgrounds);
+            return new List<CampgroundRequest> ((IEnumerable<CampgroundRequest>)campgrounds);
         }
 
         [HttpGet("{campgroundId}")]
@@ -52,7 +48,7 @@ namespace WanderCampController.APILayer.Controller
 
         // Requires authentication to add a new campground
         [HttpPost]
-        public async Task<CampgroundRequest> AddCampgroundAsync(Campground campground)
+        public async Task<CampgroundRequest> AddCampgroundAsync([FromBody] Campground campground)
         {
             await _campgroundService.AddCampgroundAsync(campground);
 
