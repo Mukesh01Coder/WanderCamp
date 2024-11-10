@@ -13,7 +13,7 @@ namespace WanderCampController.APILayer.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize] // Apply authorization to all endpoints by default
+    [Authorize] // Apply authorization to all endpoints by default 
     public class CampgroundController: ControllerBase
     {
         private readonly ICampgroundService _campgroundService;
