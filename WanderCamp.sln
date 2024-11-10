@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WanderCamp", "WanderCamp.csproj", "{D8710C3C-BFDF-49B7-AA52-8CCDB8667B65}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WanderCamp.Domain", "WanderCamp.Domain\WanderCamp.Domain.csproj", "{D3E02BFD-3CF4-4CFD-97C2-9DD7A1652C91}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WanderCampRepository.DataAccessLayer", "WanderCampRepository.DataAccessLayer\WanderCampRepository.DataAccessLayer.csproj", "{B2264C78-2A40-44E3-92D3-1BE15E658B9F}"
@@ -17,16 +15,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WanderCampController.APILay
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WanderCampService.BusinessLogicLayer", "WanderCampService.BusinessLogicLayer\WanderCampService.BusinessLogicLayer.csproj", "{A5583C02-7655-4172-B0CF-B89646671E04}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WanderCamp", "WanderCamp.Host\WanderCamp.csproj", "{717BFA3A-B3C0-4DB1-ACD5-DD8B9FD04848}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D8710C3C-BFDF-49B7-AA52-8CCDB8667B65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8710C3C-BFDF-49B7-AA52-8CCDB8667B65}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8710C3C-BFDF-49B7-AA52-8CCDB8667B65}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8710C3C-BFDF-49B7-AA52-8CCDB8667B65}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D3E02BFD-3CF4-4CFD-97C2-9DD7A1652C91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D3E02BFD-3CF4-4CFD-97C2-9DD7A1652C91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3E02BFD-3CF4-4CFD-97C2-9DD7A1652C91}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +47,10 @@ Global
 		{A5583C02-7655-4172-B0CF-B89646671E04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5583C02-7655-4172-B0CF-B89646671E04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5583C02-7655-4172-B0CF-B89646671E04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{717BFA3A-B3C0-4DB1-ACD5-DD8B9FD04848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{717BFA3A-B3C0-4DB1-ACD5-DD8B9FD04848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{717BFA3A-B3C0-4DB1-ACD5-DD8B9FD04848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{717BFA3A-B3C0-4DB1-ACD5-DD8B9FD04848}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

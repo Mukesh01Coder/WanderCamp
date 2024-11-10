@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+ 
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+  </ItemGroup>
+
+ 
+
+  <ItemGroup>
+    <ProjectReference Include="..\WanderCamp.Common\WanderCamp.Common.csproj" />
+    <ProjectReference Include="..\WanderCamp.Domain\WanderCamp.Domain.csproj" />
+    <ProjectReference Include="..\WanderCamp.UnitTest\WanderCamp.UnitTest.csproj" />
+    <ProjectReference Include="..\WanderCampController.APILayer\WanderCampController.APILayer.csproj" />
+  </ItemGroup>
+
+ 
+
+</Project>

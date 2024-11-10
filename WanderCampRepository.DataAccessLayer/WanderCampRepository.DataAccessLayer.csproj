@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Providers.Core" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WanderCamp.Common\WanderCamp.Common.csproj" />
     <ProjectReference Include="..\WanderCamp.Domain\WanderCamp.Domain.csproj" />
   </ItemGroup>
 
