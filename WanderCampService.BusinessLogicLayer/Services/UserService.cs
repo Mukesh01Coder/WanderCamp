@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using WanderCamp.Domain.Models;
+using WanderCamp.Domain.Models.DTOs;
 using WanderCampRepository.DataAccessLayer.Interface;
 using WanderCampService.BusinessLogicLayer.Interfaces;
 
@@ -13,29 +15,52 @@ namespace WanderCampService.BusinessLogicLayer.Services
     {
         private readonly IUserRepository _userRepository;
 
-        public UserService(IUserRepository userRepository)
+        private readonly IConfiguration _configuration;
+
+        public UserService(IUserRepository userRepository, IConfiguration configuration)
         {
             _userRepository = userRepository;
+            _configuration = configuration;
         }
 
-        public Task<User> AuthenticateAsync(User request)
+        public async Task<LoginResponseDTO> AuthenticateAsync(LoginDTO request)
         {
-            throw new NotImplementedException();
+             return await _userRepository.AuthenticateAsync(request);
         }
 
-        public Task<string> GenerateJwtTokenAsync(User user)
+        public async Task<UserDTO> GetUserProfileAsync(int userId)
         {
-            throw new NotImplementedException();
+            return await _userRepository.GetUserProfileAsync(userId);
         }
 
-        public Task<User> GetUserProfileAsync(int userId)
+        public async Task RegisterAsync(User request)
         {
-            throw new NotImplementedException();
+            await _userRepository.RegisterAsync(request);
         }
 
-        public Task<User> RegisterAsync(User request)
+        public string GenerateJwtToken(LoginResponseDTO user)
         {
-            throw new NotImplementedException();
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                new Claim(ClaimTypes.Name,user.UserName!),
+                new Claim(ClaimTypes.Email,user.Email!),
+                new Claim(ClaimTypes.MobilePhone, user.MobileNumber!)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken
+            (
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials: creds
+            );
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

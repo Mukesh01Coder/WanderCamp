@@ -1,64 +1,56 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using WanderCamp.Domain.Models;
-using WanderCampController.APILayer.Model;
+﻿using Microsoft.AspNetCore.Mvc;
+using WanderCamp.Domain.Models.DTOs;
 using WanderCampService.BusinessLogicLayer.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using WanderCamp.Domain.Models;
 
 namespace WanderCampController.APILayer.Controller
 {
-
-    [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase // ControllerBase provides essential functionality and tools to handle HTTP requests, generate responses, handle errors, and manage data binding, making it a core component of ASP.NET Core Web API applications
+    [Route("api/[controller]")]
+    public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
 
-        public UserController(IUserService userServerce)
+
+        public UserController(IUserService userService)
         {
-            _userService = userServerce;
+            _userService = userService;
+
         }
 
-        [HttpPost("register")]
-        public async Task<UserRegistrationRequest> RegisterAsync([FromBody] User request)
+        [HttpGet("GetUserProfile")]
+        public async Task<UserDTO> GetUserProfileAsync(int userId)
         {
-
-            if (!ModelState.IsValid)
-            {
-                return new UserRegistrationRequest { ErrorMessage = "Invalid model state" };
-            }
-
-
-            var result = await _userService.RegisterAsync(request);
             
-            return new UserRegistrationRequest(result);
+            var user = await _userService.GetUserProfileAsync(userId);
+
+            return user;
         }
 
-        [HttpPost("login")]
-        public async Task<UserLoginRequest> LoginAsync([FromBody] User request)
+
+        [HttpPost("Register")]
+        public async Task<User> RegisterAsync([FromBody] User request)
+        {
+            await _userService.RegisterAsync(request);
+
+            return request;
+        }
+
+        [HttpPost("Login")]
+        public async Task<ActionResult<LoginResponseDTO>> LoginAsync([FromBody] LoginDTO request)
         {
             var user = await _userService.AuthenticateAsync(request);
-            if (user != null)
-            {
-                var token = _userService.GenerateJwtTokenAsync(user); // Generate token
 
-                 return new UserLoginRequest { Token = token };
+            if (user == null)
+            {
+                return Unauthorized();
             }
 
-            return new UserLoginRequest { ErrorMessage = "Invalid login credentials" };
+            var token = _userService.GenerateJwtToken(user);
+
+            return Ok(new { Token = token });
 
         }
-
-        [Authorize]
-        [HttpGet("userId")]
-        public async Task<UserResponse> GetUserProfileAsync(int userId)
-        {
-            var user =  await _userService.GetUserProfileAsync(userId);
-            if (user != null)
-                return new UserResponse(user);
-
-            return new UserResponse { ErrorMessage = "User not found" };
-        }
-
-        
     }
 }

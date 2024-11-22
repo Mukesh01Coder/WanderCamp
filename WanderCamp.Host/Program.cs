@@ -1,9 +1,8 @@
-
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using WanderCampController.APILayer.Configurations;
 using WanderCampRepository.DataAccessLayer.DatabaseContext;
 using WanderCampRepository.DataAccessLayer.Interface;
 using WanderCampRepository.DataAccessLayer.Repository;
@@ -16,31 +15,35 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-var key = Encoding.UTF8.GetBytes("YourSecretKeyHere"); // Use a secure key
+// Register Swagger services
+builder.Services.AddSwaggerDocumentation();
 
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 
     }).AddJwtBearer(Options =>
     {
+       
         Options.TokenValidationParameters = new TokenValidationParameters
         {
+
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = "YourIssuerHere",
-            ValidAudience = "YourAudienceHere",
-            IssuerSigningKey = new SymmetricSecurityKey(key)
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
         };
 
     });
-
+builder.Services.AddAuthorization();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
 
 
 // Register your IUserService and other services
@@ -61,16 +64,16 @@ if (!app.Environment.IsDevelopment())
 }
 
 
-
+app.UseSwaggerDocumentation();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapGet("/hi", () => "Hello!");
-
 // Configure the HTTP request pipeline.
-//app.MapControllers();
-app.MapGet("/", () => "Hello, World!");
+app.MapControllers();
+
+
 
 app.Run();

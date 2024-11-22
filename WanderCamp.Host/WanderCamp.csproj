@@ -17,7 +17,6 @@
  
 
   <ItemGroup>
-    <ProjectReference Include="..\WanderCamp.Common\WanderCamp.Common.csproj" />
     <ProjectReference Include="..\WanderCamp.Domain\WanderCamp.Domain.csproj" />
     <ProjectReference Include="..\WanderCamp.UnitTest\WanderCamp.UnitTest.csproj" />
     <ProjectReference Include="..\WanderCampController.APILayer\WanderCampController.APILayer.csproj" />

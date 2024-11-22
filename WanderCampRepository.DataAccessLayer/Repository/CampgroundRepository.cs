@@ -25,7 +25,7 @@ namespace WanderCampRepository.DataAccessLayer.Repository
             await  _context.SaveChangesAsync();
         }
 
-        public async Task<List<Campground>> GetAllCampgroundsAsync()
+        public async Task<IEnumerable<Campground>> GetAllCampgroundsAsync()
         {
             var campgrounds =  await _context.Campgrounds.ToListAsync();
 

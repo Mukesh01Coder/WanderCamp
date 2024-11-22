@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WanderCamp.Common\WanderCamp.Common.csproj" />
     <ProjectReference Include="..\WanderCamp.Domain\WanderCamp.Domain.csproj" />
     <ProjectReference Include="..\WanderCampRepository.DataAccessLayer\WanderCampRepository.DataAccessLayer.csproj" />
   </ItemGroup>

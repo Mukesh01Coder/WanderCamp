@@ -17,19 +17,23 @@ namespace WanderCampService.BusinessLogicLayer.Services
         {
             _repository = repository;
         }
-        public Task AddCampgroundAsync(Campground campground)
+        public async Task AddCampgroundAsync(Campground campground)
         {
-            throw new NotImplementedException();
+           await _repository.AddCampgroundAsync(campground);
         }
 
-        public Task<Campground> GetAllCampgroundsAsync()
+        public async Task<IEnumerable<Campground>> GetAllCampgroundsAsync()
         {
-            throw new NotImplementedException();
+            var camgrounds = await _repository.GetAllCampgroundsAsync();
+
+            return camgrounds;
         }
 
-        public Task<Campground> GetCampgroundByIdAsync(int campgroundId)
+        public async Task<Campground> GetCampgroundByIdAsync(int campgroundId)
         {
-            throw new NotImplementedException();
+            var campground = await _repository.GetCampgroundByIdAsync(campgroundId);
+
+            return campground;
         }
     }
 }

@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WanderCamp.Domain", "Wander
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WanderCampRepository.DataAccessLayer", "WanderCampRepository.DataAccessLayer\WanderCampRepository.DataAccessLayer.csproj", "{B2264C78-2A40-44E3-92D3-1BE15E658B9F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WanderCamp.Common", "WanderCamp.Common\WanderCamp.Common.csproj", "{56BFA567-1695-496B-BF65-67C08D6EC2C1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WanderCamp.UnitTest", "WanderCamp.UnitTest\WanderCamp.UnitTest.csproj", "{AAAAAC17-C1D2-47FA-8426-90C0ED27FD6B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WanderCampController.APILayer", "WanderCampController.APILayer\WanderCampController.APILayer.csproj", "{1807BB8C-77F3-4C88-8C36-C122AE27B11F}"
@@ -31,10 +29,6 @@ Global
 		{B2264C78-2A40-44E3-92D3-1BE15E658B9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2264C78-2A40-44E3-92D3-1BE15E658B9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2264C78-2A40-44E3-92D3-1BE15E658B9F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{56BFA567-1695-496B-BF65-67C08D6EC2C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{56BFA567-1695-496B-BF65-67C08D6EC2C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{56BFA567-1695-496B-BF65-67C08D6EC2C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{56BFA567-1695-496B-BF65-67C08D6EC2C1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AAAAAC17-C1D2-47FA-8426-90C0ED27FD6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AAAAAC17-C1D2-47FA-8426-90C0ED27FD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAAAAC17-C1D2-47FA-8426-90C0ED27FD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU

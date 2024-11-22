@@ -9,7 +9,7 @@ namespace WanderCampService.BusinessLogicLayer.Interfaces
 {
     public interface ICampgroundService
     {
-        Task<Campground> GetAllCampgroundsAsync();
+        Task<IEnumerable<Campground>> GetAllCampgroundsAsync();
         Task<Campground> GetCampgroundByIdAsync(int campgroundId);
         Task AddCampgroundAsync(Campground campground);
     }
